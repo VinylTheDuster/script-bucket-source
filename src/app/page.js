@@ -1,103 +1,71 @@
+"use client";
+
 import Image from "next/image";
+import React, { useEffect, useState } from 'react';
+
+import LabelFetcher from "../app/scripts/labelFetcher";
+import test from "../app/scripts/test.js";
+
+
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [rotated, setRotated] = useState(false);
+  const [searchFocused, setSearchFocused] = useState(false);
+  const [scripts, setScripts] = useState([]);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  const handleSelectClick = () => {
+    setRotated((prev) => !prev);
+  };
+
+  return (
+    <div className="mx-[25%]">
+      <header className="mt-35 mb-45">
+        <h1 className="text-5xl text-center py-8 pb-8 antialiased">Script Bucket</h1>
+        <p className="text-center text-2xl px-45 text-neutral-500 antialiased">
+          Une collection personnelle de scripts et d'APIs que je crée en différents langages pour m'entraîner. Je n'assure pas leur pleine fonctionnalité et me dégage de toute responsabilité s'ils sont utilisés hors de leur champ d'utilisation prévu.
+        </p>
+      </header>
+      <main>
+        <div id="main-container" className="rounded-md border-neutral-200 border-2 border-solid px-16 pt-8">
+          <section id="main-container-search">
+
+            <div id="search-result" className="text-2xl">Résultats</div>
+
+            <div className="grid grid-cols-4 items-end justify-items-center my-8">
+              
+              <div className="relative flex flex-row justify-self-start rounded-md border-2 border-solid border-neutral-200 w-43 h-fit">
+                <select onClick={handleSelectClick} className="rounded-md appearance-none focus:outline-none w-full p-2 pr-3 cursor-pointer transition duration-150 ease-in-out hover:ring-2 hover:ring-indigo-600/50 focus:ring-2 focus:ring-indigo-600" name="sorter" id="">
+                  <option value="sort-new">Le plus récent</option>
+                  <option value="sort-old">Le plus ancien</option>
+                  <option value="sort-ascendant">Nom croissant</option>
+                  <option value="sort-descendant">Nom décroissant</option>
+                </select>
+                <Image id="sort-arrow" className={`absolute inset-y left-[82%] top-[27%] pointer-events-none transition duration-150 ease-in-out ${rotated ? "rotate-180" : ""}`} src="/images/button/light/slct_arrow_black.svg" width="20" height="20" alt="" />
+              </div>
+
+              <div className="flex flex-row rounded-md border-2 border-solid border-neutral-200 w-full h-fit col-span-2 transition duration-150 ease-in-out hover:ring-2 hover:ring-indigo-600/50 focus:ring-2 focus:ring-indigo-600 select-none">
+                <Image className="ml-2" src="/images/button/light/ipt_search_black.svg"
+                width="20" height="20" alt="" />
+                <input className="focus:outline-none w-full p-2" placeholder="Rechercher..." type="text" />
+              </div>
+
+              <a className="justify-self-end rounded-3xl border-2 border-neutral-200 gap-2 py-2 pl-3 pr-4 flex justify-center cursor-pointer transition duration-150 ease-in-out hover:ring-2 hover:ring-indigo-600/50 select-none">
+                <Image src="/images/button/light/btn_filter_black.svg" width="20" height="20" alt="" />Filtres          
+              </a>
+            </div>
+
+            <div>
+              <div id="function-select" className="flex flex-row flex-wrap rounded-md border-neutral-200 border-2 border-solid p-3 inset-shadow-sm inset-shadow-neutral-200 gap-2 max-w-[33%]">
+
+              </div>
+            </div>
+            
+          </section>
+          <section id="main-container-results">
+            
+          </section>
         </div>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
     </div>
   );
 }
