@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '../../lib/supabaseClient';
 
-export default function LabelFetcher() {
+export function LabelFetcher() {
   const [labels, setLabels] = useState([]);
 
   useEffect(() => {
@@ -24,7 +24,7 @@ export default function LabelFetcher() {
     }
 
     initializeLabels();
-  }, []);
+  },[]);
 
   const renderLabels = (type) =>
     labels
@@ -39,7 +39,7 @@ export default function LabelFetcher() {
       ));
 
   return (
-    <div id="filter-select" className="grid grid-cols-4 gap-10">
+    <div id="filter-select" className="grid grid-cols-4 items-start gap-15">
 
         <div>
             <label htmlFor="">Type</label>
@@ -62,4 +62,38 @@ export default function LabelFetcher() {
         </div>
     </div>
   );
+}
+
+export function ModuleInitializer() {
+    const [projects, setProjects] = useState([]);
+
+    useEffect(() => {
+        async function initializeModules() {
+            const { data, error } = await supabase.from('projectBucket').select('*');
+
+            if (error) {
+                console.warn('Erreur supabase :', error.message);
+                return;
+            }
+
+            if (!data || !data.length) {
+                console.warn('Aucun contenu trouvé dans Supabase');
+                return;
+            }
+
+            setProjects(dataProjects);
+        }
+    });
+    const renderProjects = (uuid) => projects.filter((l) => l.uuid === uuid).map((l, idx) => (
+        <span 
+        key={`${uuid}-${l.id}-${idx}`} 
+        style={{ backgroundColor: l.bgColor }} 
+        className="rounded-2xl py-0.5 px-2 w-fit h-fit text-[0.70em] select-none">
+          {l.name} 
+        </span>
+      ));
+
+      return (
+        <div></div>
+      );
 }

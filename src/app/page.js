@@ -3,14 +3,14 @@
 import Image from "next/image";
 import React, {useRef, useState } from 'react';
 
-import LabelInitializer from "./scripts/labelFilterInitializer";
+import { LabelFetcher, ModuleInitializer } from "./scripts/labelFilterInitializer";
 
 export default function Home() {
 
   // use states
   const [rotated, setRotated] = useState(false);
-  const [searchBarFocused, setSearchBarFocused] = useState(true);
-  const [filterOn, setFilterOn] = useState(false);
+  const [searchBarFocused, setSearchBarFocused] = useState(false);
+  const [filterOn, setFilterOn] = useState(true);
 
   // use ref
   const refSearchBar = useRef()
@@ -60,13 +60,254 @@ export default function Home() {
               </a>
             </div>            
           </section>
-          <section>
-            <div className={`duration-500 ease-out z-0 mr-16 ${filterOn ? "relative -mb-30 -top-36" : "relative mb-5 top-0"}`}>
-              <LabelInitializer />
+          <section className="flex">
+            <div className={`duration-500 ease-out z-0 ${filterOn ? "relative -mb-30 -top-36" : "relative top-0"}`}>
+              <LabelFetcher />
             </div>
           </section>
-          <section id="main-container-results">
+          <section id="main-container-results" className="grid grid-cols-3 gap-10 mt-5">
             
+              <div className="px-6 py-5 rounded-md border-neutral-200 border-2 border-solid">
+                <h2 className="text-xl font-medium">Script Test</h2>
+                <p className="mt-1">This is a module test from Script Bucket</p>
+                <p className="mt-1 mb-5 text-sm text-neutral-500">11/12/25 à 10:00</p>
+                <a className="flex flex-row gap-2 w-fit bg-[#1976D275] p-2 pr-3 rounded-lg transition ease-in-out hover:bg-[#1976D285]" href=""><Image className="" src="/images/button/light/btn_consult.svg" width="20" height="20" alt="" />Consulter</a>
+                <div className="flex flex-row gap-2 mt-5">
+                    <span className="bg-amber-500 rounded-2xl py-0.5 px-2 w-fit h-fit text-[0.70em] select-none">
+                      Automation
+                    </span>
+                    <span className="bg-amber-500 rounded-2xl py-0.5 px-2 w-fit h-fit text-[0.70em] select-none">
+                      Frontend
+                    </span>
+                    <span className="bg-amber-500 rounded-2xl py-0.5 px-2 w-fit h-fit text-[0.70em] select-none">
+                      TypeScript
+                    </span>
+                    <span className="bg-amber-500 rounded-2xl py-0.5 px-2 w-fit h-fit text-[0.70em] select-none">
+                      Experimental
+                    </span>
+                 </div>
+              </div>
+
+              <div className="px-6 py-5 rounded-md border-neutral-200 border-2 border-solid">
+                <h2 className="text-xl font-medium">Script Test</h2>
+                <p className="mt-1">This is a module test from Script Bucket</p>
+                <p className="mt-1 mb-5 text-sm text-neutral-500">11/12/25 à 10:00</p>
+                <a className="flex flex-row gap-2 w-fit bg-[#1976D275] p-2 pr-3 rounded-lg transition ease-in-out hover:bg-[#1976D285]" href=""><Image className="" src="/images/button/light/btn_consult.svg" width="20" height="20" alt="" />Consulter</a>
+                <div className="flex flex-row gap-2 mt-5">
+                    <span className="bg-amber-500 rounded-2xl py-0.5 px-2 w-fit h-fit text-[0.70em] select-none">
+                      Automation
+                    </span>
+                    <span className="bg-amber-500 rounded-2xl py-0.5 px-2 w-fit h-fit text-[0.70em] select-none">
+                      Frontend
+                    </span>
+                    <span className="bg-amber-500 rounded-2xl py-0.5 px-2 w-fit h-fit text-[0.70em] select-none">
+                      TypeScript
+                    </span>
+                    <span className="bg-amber-500 rounded-2xl py-0.5 px-2 w-fit h-fit text-[0.70em] select-none">
+                      Experimental
+                    </span>
+                 </div>
+              </div>
+              <div className="px-6 py-5 rounded-md border-neutral-200 border-2 border-solid">
+                <h2 className="text-xl font-medium">Script Test</h2>
+                <p className="mt-1">This is a module test from Script Bucket</p>
+                <p className="mt-1 mb-5 text-sm text-neutral-500">11/12/25 à 10:00</p>
+                <a className="flex flex-row gap-2 w-fit bg-[#1976D275] p-2 pr-3 rounded-lg transition ease-in-out hover:bg-[#1976D285]" href=""><Image className="" src="/images/button/light/btn_consult.svg" width="20" height="20" alt="" />Consulter</a>
+                <div className="flex flex-row gap-2 mt-5">
+                    <span className="bg-amber-500 rounded-2xl py-0.5 px-2 w-fit h-fit text-[0.70em] select-none">
+                      Automation
+                    </span>
+                    <span className="bg-amber-500 rounded-2xl py-0.5 px-2 w-fit h-fit text-[0.70em] select-none">
+                      Frontend
+                    </span>
+                    <span className="bg-amber-500 rounded-2xl py-0.5 px-2 w-fit h-fit text-[0.70em] select-none">
+                      TypeScript
+                    </span>
+                    <span className="bg-amber-500 rounded-2xl py-0.5 px-2 w-fit h-fit text-[0.70em] select-none">
+                      Experimental
+                    </span>
+                 </div>
+              </div>
+              <div className="px-6 py-5 rounded-md border-neutral-200 border-2 border-solid">
+                <h2 className="text-xl font-medium">Script Test</h2>
+                <p className="mt-1">This is a module test from Script Bucket</p>
+                <p className="mt-1 mb-5 text-sm text-neutral-500">11/12/25 à 10:00</p>
+                <a className="flex flex-row gap-2 w-fit bg-[#1976D275] p-2 pr-3 rounded-lg transition ease-in-out hover:bg-[#1976D285]" href=""><Image className="" src="/images/button/light/btn_consult.svg" width="20" height="20" alt="" />Consulter</a>
+                <div className="flex flex-row gap-2 mt-5">
+                    <span className="bg-amber-500 rounded-2xl py-0.5 px-2 w-fit h-fit text-[0.70em] select-none">
+                      Automation
+                    </span>
+                    <span className="bg-amber-500 rounded-2xl py-0.5 px-2 w-fit h-fit text-[0.70em] select-none">
+                      Frontend
+                    </span>
+                    <span className="bg-amber-500 rounded-2xl py-0.5 px-2 w-fit h-fit text-[0.70em] select-none">
+                      TypeScript
+                    </span>
+                    <span className="bg-amber-500 rounded-2xl py-0.5 px-2 w-fit h-fit text-[0.70em] select-none">
+                      Experimental
+                    </span>
+                 </div>
+              </div>
+              <div className="px-6 py-5 rounded-md border-neutral-200 border-2 border-solid">
+                <h2 className="text-xl font-medium">Script Test</h2>
+                <p className="mt-1">This is a module test from Script Bucket</p>
+                <p className="mt-1 mb-5 text-sm text-neutral-500">11/12/25 à 10:00</p>
+                <a className="flex flex-row gap-2 w-fit bg-[#1976D275] p-2 pr-3 rounded-lg transition ease-in-out hover:bg-[#1976D285]" href=""><Image className="" src="/images/button/light/btn_consult.svg" width="20" height="20" alt="" />Consulter</a>
+                <div className="flex flex-row gap-2 mt-5">
+                    <span className="bg-amber-500 rounded-2xl py-0.5 px-2 w-fit h-fit text-[0.70em] select-none">
+                      Automation
+                    </span>
+                    <span className="bg-amber-500 rounded-2xl py-0.5 px-2 w-fit h-fit text-[0.70em] select-none">
+                      Frontend
+                    </span>
+                    <span className="bg-amber-500 rounded-2xl py-0.5 px-2 w-fit h-fit text-[0.70em] select-none">
+                      TypeScript
+                    </span>
+                    <span className="bg-amber-500 rounded-2xl py-0.5 px-2 w-fit h-fit text-[0.70em] select-none">
+                      Experimental
+                    </span>
+                 </div>
+              </div>
+              <div className="px-6 py-5 rounded-md border-neutral-200 border-2 border-solid">
+                <h2 className="text-xl font-medium">Script Test</h2>
+                <p className="mt-1">This is a module test from Script Bucket</p>
+                <p className="mt-1 mb-5 text-sm text-neutral-500">11/12/25 à 10:00</p>
+                <a className="flex flex-row gap-2 w-fit bg-[#1976D275] p-2 pr-3 rounded-lg transition ease-in-out hover:bg-[#1976D285]" href=""><Image className="" src="/images/button/light/btn_consult.svg" width="20" height="20" alt="" />Consulter</a>
+                <div className="flex flex-row gap-2 mt-5">
+                    <span className="bg-amber-500 rounded-2xl py-0.5 px-2 w-fit h-fit text-[0.70em] select-none">
+                      Automation
+                    </span>
+                    <span className="bg-amber-500 rounded-2xl py-0.5 px-2 w-fit h-fit text-[0.70em] select-none">
+                      Frontend
+                    </span>
+                    <span className="bg-amber-500 rounded-2xl py-0.5 px-2 w-fit h-fit text-[0.70em] select-none">
+                      TypeScript
+                    </span>
+                    <span className="bg-amber-500 rounded-2xl py-0.5 px-2 w-fit h-fit text-[0.70em] select-none">
+                      Experimental
+                    </span>
+                 </div>
+              </div>
+              <div className="px-6 py-5 rounded-md border-neutral-200 border-2 border-solid">
+                <h2 className="text-xl font-medium">Script Test</h2>
+                <p className="mt-1">This is a module test from Script Bucket</p>
+                <p className="mt-1 mb-5 text-sm text-neutral-500">11/12/25 à 10:00</p>
+                <a className="flex flex-row gap-2 w-fit bg-[#1976D275] p-2 pr-3 rounded-lg transition ease-in-out hover:bg-[#1976D285]" href=""><Image className="" src="/images/button/light/btn_consult.svg" width="20" height="20" alt="" />Consulter</a>
+                <div className="flex flex-row gap-2 mt-5">
+                    <span className="bg-amber-500 rounded-2xl py-0.5 px-2 w-fit h-fit text-[0.70em] select-none">
+                      Automation
+                    </span>
+                    <span className="bg-amber-500 rounded-2xl py-0.5 px-2 w-fit h-fit text-[0.70em] select-none">
+                      Frontend
+                    </span>
+                    <span className="bg-amber-500 rounded-2xl py-0.5 px-2 w-fit h-fit text-[0.70em] select-none">
+                      TypeScript
+                    </span>
+                    <span className="bg-amber-500 rounded-2xl py-0.5 px-2 w-fit h-fit text-[0.70em] select-none">
+                      Experimental
+                    </span>
+                 </div>
+              </div>
+              <div className="px-6 py-5 rounded-md border-neutral-200 border-2 border-solid">
+                <h2 className="text-xl font-medium">Script Test</h2>
+                <p className="mt-1">This is a module test from Script Bucket</p>
+                <p className="mt-1 mb-5 text-sm text-neutral-500">11/12/25 à 10:00</p>
+                <a className="flex flex-row gap-2 w-fit bg-[#1976D275] p-2 pr-3 rounded-lg transition ease-in-out hover:bg-[#1976D285]" href=""><Image className="" src="/images/button/light/btn_consult.svg" width="20" height="20" alt="" />Consulter</a>
+                <div className="flex flex-row gap-2 mt-5">
+                    <span className="bg-amber-500 rounded-2xl py-0.5 px-2 w-fit h-fit text-[0.70em] select-none">
+                      Automation
+                    </span>
+                    <span className="bg-amber-500 rounded-2xl py-0.5 px-2 w-fit h-fit text-[0.70em] select-none">
+                      Frontend
+                    </span>
+                    <span className="bg-amber-500 rounded-2xl py-0.5 px-2 w-fit h-fit text-[0.70em] select-none">
+                      TypeScript
+                    </span>
+                    <span className="bg-amber-500 rounded-2xl py-0.5 px-2 w-fit h-fit text-[0.70em] select-none">
+                      Experimental
+                    </span>
+                 </div>
+              </div>
+              <div className="px-6 py-5 rounded-md border-neutral-200 border-2 border-solid">
+                <h2 className="text-xl font-medium">Script Test</h2>
+                <p className="mt-1">This is a module test from Script Bucket</p>
+                <p className="mt-1 mb-5 text-sm text-neutral-500">11/12/25 à 10:00</p>
+                <a className="flex flex-row gap-2 w-fit bg-[#1976D275] p-2 pr-3 rounded-lg transition ease-in-out hover:bg-[#1976D285]" href=""><Image className="" src="/images/button/light/btn_consult.svg" width="20" height="20" alt="" />Consulter</a>
+                <div className="flex flex-row gap-2 mt-5">
+                    <span className="bg-amber-500 rounded-2xl py-0.5 px-2 w-fit h-fit text-[0.70em] select-none">
+                      Automation
+                    </span>
+                    <span className="bg-amber-500 rounded-2xl py-0.5 px-2 w-fit h-fit text-[0.70em] select-none">
+                      Frontend
+                    </span>
+                    <span className="bg-amber-500 rounded-2xl py-0.5 px-2 w-fit h-fit text-[0.70em] select-none">
+                      TypeScript
+                    </span>
+                    <span className="bg-amber-500 rounded-2xl py-0.5 px-2 w-fit h-fit text-[0.70em] select-none">
+                      Experimental
+                    </span>
+                 </div>
+              </div>
+              <div className="px-6 py-5 rounded-md border-neutral-200 border-2 border-solid">
+                <h2 className="text-xl font-medium">Script Test</h2>
+                <p className="mt-1">This is a module test from Script Bucket</p>
+                <p className="mt-1 mb-5 text-sm text-neutral-500">11/12/25 à 10:00</p>
+                <a className="flex flex-row gap-2 w-fit bg-[#1976D275] p-2 pr-3 rounded-lg transition ease-in-out hover:bg-[#1976D285]" href=""><Image className="" src="/images/button/light/btn_consult.svg" width="20" height="20" alt="" />Consulter</a>
+                <div className="flex flex-row gap-2 mt-5">
+                    <span className="bg-amber-500 rounded-2xl py-0.5 px-2 w-fit h-fit text-[0.70em] select-none">
+                      Automation
+                    </span>
+                    <span className="bg-amber-500 rounded-2xl py-0.5 px-2 w-fit h-fit text-[0.70em] select-none">
+                      Frontend
+                    </span>
+                    <span className="bg-amber-500 rounded-2xl py-0.5 px-2 w-fit h-fit text-[0.70em] select-none">
+                      TypeScript
+                    </span>
+                    <span className="bg-amber-500 rounded-2xl py-0.5 px-2 w-fit h-fit text-[0.70em] select-none">
+                      Experimental
+                    </span>
+                 </div>
+              </div>
+              <div className="px-6 py-5 rounded-md border-neutral-200 border-2 border-solid">
+                <h2 className="text-xl font-medium">Script Test</h2>
+                <p className="mt-1">This is a module test from Script Bucket</p>
+                <p className="mt-1 mb-5 text-sm text-neutral-500">11/12/25 à 10:00</p>
+                <a className="flex flex-row gap-2 w-fit bg-[#1976D275] p-2 pr-3 rounded-lg transition ease-in-out hover:bg-[#1976D285]" href=""><Image className="" src="/images/button/light/btn_consult.svg" width="20" height="20" alt="" />Consulter</a>
+                <div className="flex flex-row gap-2 mt-5">
+                    <span className="bg-amber-500 rounded-2xl py-0.5 px-2 w-fit h-fit text-[0.70em] select-none">
+                      Automation
+                    </span>
+                    <span className="bg-amber-500 rounded-2xl py-0.5 px-2 w-fit h-fit text-[0.70em] select-none">
+                      Frontend
+                    </span>
+                    <span className="bg-amber-500 rounded-2xl py-0.5 px-2 w-fit h-fit text-[0.70em] select-none">
+                      TypeScript
+                    </span>
+                    <span className="bg-amber-500 rounded-2xl py-0.5 px-2 w-fit h-fit text-[0.70em] select-none">
+                      Experimental
+                    </span>
+                 </div>
+              </div>
+              <div className="px-6 py-5 rounded-md border-neutral-200 border-2 border-solid">
+                <h2 className="text-xl font-medium">Script Test</h2>
+                <p className="mt-1">This is a module test from Script Bucket</p>
+                <p className="mt-1 mb-5 text-sm text-neutral-500">11/12/25 à 10:00</p>
+                <a className="flex flex-row gap-2 w-fit bg-[#1976D275] p-2 pr-3 rounded-lg transition ease-in-out hover:bg-[#1976D285]" href=""><Image className="" src="/images/button/light/btn_consult.svg" width="20" height="20" alt="" />Consulter</a>
+                <div className="flex flex-row gap-2 mt-5">
+                    <span className="bg-amber-500 rounded-2xl py-0.5 px-2 w-fit h-fit text-[0.70em] select-none">
+                      Automation
+                    </span>
+                    <span className="bg-amber-500 rounded-2xl py-0.5 px-2 w-fit h-fit text-[0.70em] select-none">
+                      Frontend
+                    </span>
+                    <span className="bg-amber-500 rounded-2xl py-0.5 px-2 w-fit h-fit text-[0.70em] select-none">
+                      TypeScript
+                    </span>
+                    <span className="bg-amber-500 rounded-2xl py-0.5 px-2 w-fit h-fit text-[0.70em] select-none">
+                      Experimental
+                    </span>
+                 </div>
+              </div>
           </section>
         </div>
       </main>
