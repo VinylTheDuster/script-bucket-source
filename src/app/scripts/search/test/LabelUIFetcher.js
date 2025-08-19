@@ -39,7 +39,7 @@ export function LabelFetcher() {
 
   return (
     <div id="filter-select" className="grid grid-cols-4 items-start gap-15">
-
+        
         <div>
             <label htmlFor="">Type</label>
             <div id="function-select" className="flex flex-row flex-wrap rounded-md border-neutral-200 border-2 border-solid p-3 inset-shadow-sm inset-shadow-neutral-200 gap-2">{renderLabels('Function')}</div>

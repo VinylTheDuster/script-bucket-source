@@ -4,6 +4,7 @@ import Image from "next/image";
 import React, {useRef, useState } from 'react';
 
 import LabelInitializer from "./scripts/search/test/search.ui.labelfetching";
+import LabelsProvider from "./scripts/search/test/search.selectedlabelscontainer";
 //import { ModuleInitializer } from "./scripts/search/projectBucketInitializer";
 
 export default function Home() {
@@ -31,6 +32,19 @@ export default function Home() {
         <p className="text-center text-2xl px-45 text-neutral-500 antialiased">
           Une collection personnelle de scripts et d'APIs que je crée en différents langages pour m'entraîner. Je n'assure pas leur pleine fonctionnalité et me dégage de toute responsabilité s'ils sont utilisés hors de leur champ d'utilisation prévu.
         </p>
+        <LabelsProvider>
+            {({ currentLabels, rejectedLabels }) => (
+                <div>
+
+                    <p>
+                        <strong>Current Labels:</strong> {[...currentLabels].join(', ')}
+                    </p>
+                    <p>
+                        <strong>Rejected Labels:</strong> {[...rejectedLabels].join(', ')}
+                    </p>
+                </div>
+            )}
+        </LabelsProvider>
       </header>
       <main>
         { /* contains everything ont he page */ }

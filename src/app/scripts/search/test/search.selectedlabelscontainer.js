@@ -1,34 +1,37 @@
-import { useState, useEffect } from 'react';
-import { LabelFetcher } from './search.labelfetcher';
+import { useState } from 'react';
 
-export default function LabelsContainer() {
+export default function LabelsProvider({ children }) {
     const [currentLabels, setCurrentLabels] = useState(new Set());
     const [rejectedLabels, setRejectedLabels] = useState(new Set());
 
     function toggleLabel(label) {
-        setCurrentLabels(prevCurrent => {
+    setCurrentLabels(prevCurrent => {
+        setRejectedLabels(prevRejected => {
             const newCurrent = new Set(prevCurrent);
-            const newRejected = new Set(rejectedLabels);
+            const newRejected = new Set(prevRejected);
 
-            if (!prevCurrent.has(label) && !rejectedLabels.has(label)) {
-
-                // ajoute un label à current
+            if (!prevCurrent.has(label) && !prevRejected.has(label)) {
                 newCurrent.add(label);
             } else if (prevCurrent.has(label)) {
-
-                // déplace le label vers rejected
                 newCurrent.delete(label);
                 newRejected.add(label);
-            } else if (rejectedLabels.has(label)) {
-                
-                // retire le label de rejected
+            } else if (prevRejected.has(label)) {
                 newRejected.delete(label);
             }
 
-        setRejectedLabels(newRejected);
-        return newCurrent;
+            return newRejected;
         });
-    }
 
-    return (toggleLabel);
+        // On retourne le nouvel état de current
+        const updatedCurrent = new Set(prevCurrent);
+        if (!prevCurrent.has(label) && !rejectedLabels.has(label)) {
+            updatedCurrent.add(label);
+        } else if (prevCurrent.has(label)) {
+            updatedCurrent.delete(label);
+        }
+        return updatedCurrent;
+    });
+}
+    console.log("Voilà", currentLabels, rejectedLabels);
+    return children({toggleLabel, currentLabels, rejectedLabels});
 }
