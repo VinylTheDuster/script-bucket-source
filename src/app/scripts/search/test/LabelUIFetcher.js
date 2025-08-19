@@ -1,7 +1,6 @@
-'use client';
 
 import { useEffect, useState } from 'react';
-import { supabase } from '../../lib/supabaseClient';
+import { supabase } from '../../../lib/supabaseClient';
 
 export function LabelFetcher() {
   const [labels, setLabels] = useState([]);
@@ -31,7 +30,7 @@ export function LabelFetcher() {
       .filter((l) => l.type === type)
       .map((l, idx) => (
         <span 
-        key={`${type}-${l.id}-${idx}`} 
+        key={idx} 
         style={{ backgroundColor: l.bgColor }} 
         className="rounded-2xl py-1 px-3 w-fit h-fit text-[0.77em] select-none cursor-pointer transition duration-250 hover:ring-2 hover:ring-indigo-600/50">
           {l.name}  
@@ -62,38 +61,4 @@ export function LabelFetcher() {
         </div>
     </div>
   );
-}
-
-export function ModuleInitializer() {
-    const [projects, setProjects] = useState([]);
-
-    useEffect(() => {
-        async function initializeModules() {
-            const { data, error } = await supabase.from('projectBucket').select('*');
-
-            if (error) {
-                console.warn('Erreur supabase :', error.message);
-                return;
-            }
-
-            if (!data || !data.length) {
-                console.warn('Aucun contenu trouvé dans Supabase');
-                return;
-            }
-
-            setProjects(dataProjects);
-        }
-    });
-    const renderProjects = (uuid) => projects.filter((l) => l.uuid === uuid).map((l, idx) => (
-        <span 
-        key={`${uuid}-${l.id}-${idx}`} 
-        style={{ backgroundColor: l.bgColor }} 
-        className="rounded-2xl py-0.5 px-2 w-fit h-fit text-[0.70em] select-none">
-          {l.name} 
-        </span>
-      ));
-
-      return (
-        <div></div>
-      );
 }
